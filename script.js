@@ -9,22 +9,17 @@ client.connect({ /*událost, podařilo se připojit = onSuccess, reaguji na ní 
     useSSL: true
 });
 
-
 function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
     console.log("onConnect");
-    message = new Paho.MQTT.Message("Ahoj"); /*CO posílám*/
-    message.destinationName = "/row/13/text"; /*kam to posílám ????????*/ 
-    client.send(message); /*posílání zprávy*/
-
     client.onMessageArrived = onMessageArrived; /*říci, že mě ta událost zajímá*/
-    client.subscribe("bridge/temperature"); /*zapsání se k odběru zpráv*/
+    //client.subscribe("bridge/temperature"); /*zapsání se k odběru zpráv*/
 }
 
 function onMessageArrived(message) { 
     console.log("onMessageArrived:" + message.destinationName); /*kam ta zpráva dorazila + hodnota*/
     console.log("onMessageArrived:" + message.payloadString);   /* payload = obsah zprávy*/
-    /*jak to má být:*/ document.getElementById("teplota").innerText= message.payloadString;
+    /*jak to má být:*/ 
         
     /* let zobrazTeplotu = document.querySelector("#teplota");
     zobrazTeplotu.textContent=message.payloadString;*/
@@ -32,6 +27,6 @@ function onMessageArrived(message) {
 
 function sendMessage(){
     message = new Paho.MQTT.Message(document.getElementById("payload").value);  /*value = obsah textového pole*/
-    message.destinationName = "/row/13/text"; 
+    message.destinationName = "/row/13/message"; 
     client.send(message); 
 }
