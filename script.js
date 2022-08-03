@@ -13,7 +13,7 @@ function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
     console.log("onConnect");
     client.onMessageArrived = onMessageArrived; /*říci, že mě ta událost zajímá*/
-    //client.subscribe("bridge/temperature"); /*zapsání se k odběru zpráv*/
+    client.subscribe("bridge/#"); /*zapsání se k odběru zpráv*/
 }
 
 function onMessageArrived(message) { 
