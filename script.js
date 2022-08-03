@@ -29,4 +29,6 @@ function sendMessage(){
     message = new Paho.MQTT.Message(document.getElementById("payload").value);  /*value = obsah textového pole*/
     message.destinationName = "/row/13/message"; 
     client.send(message); 
+    payload.value = " "
 }
+
